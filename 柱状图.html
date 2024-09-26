@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<style>
+  *{
+      padding: 0;
+      margin: 0;
+  }
+
+  .line {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      flex-direction: row;
+  }
+  .chart {
+      width: 200px;
+      height: 100%;
+  }
+</style>
+
+<div id="app">
+  <div class="line">
+    <div class="chart" id="chart1">
+
+    </div>
+    <div class="chart" id="chart2">
+
+    </div>
+  </div>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.0/echarts.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+  function init1(){
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('chart1'));
+
+    // 指定图表的配置项和数据
+    var option = {
+      tooltip: {},
+      legend: {
+        data: ['销量']
+      },
+      xAxis: {
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      },
+      grid: {
+        top: '20%',
+        containLabel: true,
+        left: '0',
+        right: '5%',
+        bottom: 0
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }
+      ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  }
+
+  init1()
+
+</script>
+<script>
+  function init2(){
+    var myChart = echarts.init(document.getElementById('chart2'));
+    const x = ["无等级", "1级", "2级", "3级", "4级", "5级"]
+    const option =  {
+      tooltip: {
+        trigger: "axis",
+        textStyle: {
+          fontSize: 12,
+        },
+      },
+      grid: {
+        top: '20%',
+        containLabel: true,
+        left: '0',
+        right: '5%',
+        bottom: 0
+      },
+      legend: false,
+      xAxis: [{
+        type: "category",
+        data: x,
+        axisLine: {
+          show: false,
+          lineStyle: {
+            color: "rgba(180,210,234,1)",
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          margin: 15,
+          fontSize: 12,
+          interval: 0,
+        },
+      },],
+      yAxis: [{
+        type: "value",
+        nameTextStyle: {
+          fontSize: 12,
+          fontFamily: 'PingFang SC',
+          color: 'rgba(180, 209, 233, 1)',
+          fontWeight: 500,
+          padding: [0, 0, 0, -20],
+          width: 100
+        },
+        nameLocation: 'end',
+        name: '人数',
+        nameGap: 20,
+        axisLine: {
+          show: false,
+          lineStyle: {
+            color: "rgba(0,132,255,1)",
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          fontSize: 12,
+          fontFamily: 'PingFang SC',
+          color: 'rgba(180, 209, 233, 1)',
+          fontWeight: 500,
+        },
+        splitNumber: 3,
+        splitLine: {
+          show: true,
+          lineStyle: {
+            color: 'rgba(255, 255, 255, 0.1)'
+          }
+        },
+      },],
+      series: [{
+        name: "成本",
+        type: "bar",
+        label: {
+          show: true,
+          position: "top",
+          fontSize: 12,
+          fontFamily: "Orbitron",
+          fontWeight: "bold",
+          textStyle: {
+            color: "white",
+          },
+        },
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+          offset: 0,
+          color: 'rgba(67, 182, 255, 1)'
+        }, {
+          offset: 1,
+          color: 'rgba(0, 156, 255, 0.3)'
+        }]),
+        data: [40, 62, 45, 47, 66, 50],
+        barWidth: '30%',
+      },],
+    }
+    myChart.setOption(option);
+  }
+  init2()
+</script>
+</body>
+</html>
